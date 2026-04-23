@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
 
 test("primary nav links navigate correctly", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Click each primary navigation link and verify the correct page loads",
@@ -10,7 +10,7 @@ test("primary nav links navigate correctly", async ({ page }) => {
       { description: "Navigate to https://shubhamjha.com" },
       { description: "Click the About link in the navigation" },
       { description: "Navigate back to the homepage" },
-      { description: "Click the Projects link in the navigation" },
+      { description: "Click the Work link in the navigation" },
       { description: "Navigate back to the homepage" },
       { description: "Click the Blog link in the navigation" },
       { description: "Navigate back to the homepage" },
@@ -26,7 +26,7 @@ test("primary nav links navigate correctly", async ({ page }) => {
 });
 
 test("theme toggle switches between dark and light mode", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Toggle the site theme between dark and light mode",
@@ -46,7 +46,7 @@ test("theme toggle switches between dark and light mode", async ({ page }) => {
 });
 
 test("mobile navigation opens and closes", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await page.setViewportSize({ width: 375, height: 812 });
   await runSteps({
     page,

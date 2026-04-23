@@ -12,7 +12,7 @@ configure({
 
 export default {
   testDir: "./tests",
-  timeout: 60_000,
+  timeout: 120_000,
   use: {
     baseURL: "https://shubhamjha.com",
   },

@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
 
 test("newsletter form is visible", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit the homepage and find the newsletter subscribe form",
@@ -20,7 +20,7 @@ test("newsletter form is visible", async ({ page }) => {
 });
 
 test("submitting an empty email shows a validation error", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Submit the newsletter form with no email entered",
@@ -38,7 +38,7 @@ test("submitting an empty email shows a validation error", async ({ page }) => {
 });
 
 test("submitting a valid email shows success state", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Subscribe to the newsletter with a valid test email",

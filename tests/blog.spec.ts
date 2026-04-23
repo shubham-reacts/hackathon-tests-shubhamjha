@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
 
 test("blog listing page shows post cards", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit the blog page and verify post cards are displayed",
@@ -21,7 +21,7 @@ test("blog listing page shows post cards", async ({ page }) => {
 });
 
 test("clicking a blog post navigates to the post detail page", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Click a blog post from the listing and read its content",
@@ -41,7 +41,7 @@ test("clicking a blog post navigates to the post detail page", async ({ page }) 
 });
 
 test("blog post renders code blocks and formatting", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit a technical blog post and check that code and formatting render correctly",

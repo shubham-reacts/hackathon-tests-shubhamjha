@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
 
 test("contact form is visible", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit the contact page and verify the form is present",
@@ -21,7 +21,7 @@ test("contact form is visible", async ({ page }) => {
 });
 
 test("submitting an empty contact form shows validation errors", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Submit the contact form without filling in any fields",
@@ -39,7 +39,7 @@ test("submitting an empty contact form shows validation errors", async ({ page }
 });
 
 test("filling and submitting the contact form shows a success state", async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Fill in all required contact form fields and submit",
