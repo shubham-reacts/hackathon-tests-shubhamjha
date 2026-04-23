@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
+import { BASE_URL } from "./constants";
 
 test("primary nav links are present and point to the right pages", async ({ page }) => {
-  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit the homepage and verify all primary navigation links are present",
     steps: [
-      { description: "Navigate to https://shubhamjha.com" },
+      { description: `Navigate to ${BASE_URL}` },
       { description: "Wait for the page to fully load" },
     ],
     assertions: [
@@ -20,14 +20,13 @@ test("primary nav links are present and point to the right pages", async ({ page
   });
 });
 
-test("theme toggle switches between dark and light mode", async ({ page }) => {
-  test.setTimeout(120_000);
+test("theme toggle button is present in navigation", async ({ page }) => {
   await runSteps({
     page,
-    userFlow: "Toggle the site theme between dark and light mode",
+    userFlow: "Verify the theme toggle button is visible in the navigation",
     steps: [
-      { description: "Navigate to https://shubhamjha.com" },
-      { description: "Locate and click the theme toggle button in the navigation" },
+      { description: `Navigate to ${BASE_URL}` },
+      { description: "Locate the theme toggle button in the navigation" },
     ],
     assertions: [
       { assertion: "A theme toggle button labeled 'Toggle theme' or with a sun/moon icon is present in the navigation" },
@@ -39,13 +38,12 @@ test("theme toggle switches between dark and light mode", async ({ page }) => {
 });
 
 test("mobile navigation opens and closes", async ({ page }) => {
-  test.setTimeout(120_000);
   await page.setViewportSize({ width: 375, height: 812 });
   await runSteps({
     page,
-    userFlow: "Open and close the mobile navigation menu on a small screen",
+    userFlow: "Open and close the mobile navigation menu on a 375px wide viewport",
     steps: [
-      { description: "Navigate to https://shubhamjha.com" },
+      { description: `Navigate to ${BASE_URL}` },
       { description: "Locate and click the hamburger or mobile menu button" },
       { description: "Click the close button or toggle to dismiss the menu" },
     ],

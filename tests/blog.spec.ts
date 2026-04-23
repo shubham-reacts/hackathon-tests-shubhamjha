@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
+import { BASE_URL } from "./constants";
 
 test("blog listing page shows post cards", async ({ page }) => {
-  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit the blog page and verify post cards are displayed",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/blog" },
+      { description: `Navigate to ${BASE_URL}/blog` },
       { description: "Wait for the page to fully load" },
     ],
     assertions: [
@@ -21,12 +21,11 @@ test("blog listing page shows post cards", async ({ page }) => {
 });
 
 test("clicking a blog post navigates to the post detail page", async ({ page }) => {
-  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Click a blog post from the listing and read its content",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/blog" },
+      { description: `Navigate to ${BASE_URL}/blog` },
       { description: "Click the first blog post card or title link" },
       { description: "Wait for the post detail page to load" },
     ],
@@ -41,18 +40,17 @@ test("clicking a blog post navigates to the post detail page", async ({ page }) 
 });
 
 test("blog post renders code blocks and formatting", async ({ page }) => {
-  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit a technical blog post and check that code and formatting render correctly",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/blog" },
+      { description: `Navigate to ${BASE_URL}/blog` },
       { description: "Click a blog post that appears technical or has a code snippet in the preview" },
       { description: "Scroll through the post content" },
     ],
     assertions: [
       { assertion: "The post content is readable with proper headings and paragraphs" },
-      { assertion: "If a code block is present, it is visually distinct from body text" },
+      { assertion: "At least one code block with monospace formatting is visible and visually distinct from the surrounding body text" },
     ],
     test,
     expect,

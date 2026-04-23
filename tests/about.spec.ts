@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
+import { BASE_URL } from "./constants";
 
 test("about page loads with bio content", async ({ page }) => {
-  test.setTimeout(60_000);
   await runSteps({
     page,
     userFlow: "Visit the about page and verify bio content is displayed",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/about" },
+      { description: `Navigate to ${BASE_URL}/about` },
       { description: "Wait for the page to fully load" },
     ],
     assertions: [
@@ -20,17 +20,17 @@ test("about page loads with bio content", async ({ page }) => {
 });
 
 test("Calendly booking widget loads on the about page", async ({ page }) => {
-  test.setTimeout(60_000);
   await runSteps({
     page,
     userFlow: "Check that the Calendly booking widget loads and is interactive",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/about" },
+      { description: `Navigate to ${BASE_URL}/about` },
       { description: "Scroll down to find the Calendly or booking section" },
+      { description: "Wait for the Calendly iframe or booking widget to fully render (not show a loading spinner)" },
     ],
     assertions: [
       { assertion: "A Calendly embed or booking widget is visible on the page" },
-      { assertion: "The widget appears interactive and not in an error state" },
+      { assertion: "Time slots or a calendar grid are visible inside the Calendly widget — not just a loading spinner or blank iframe" },
     ],
     test,
     expect,

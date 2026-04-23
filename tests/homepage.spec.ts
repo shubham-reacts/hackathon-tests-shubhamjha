@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
+import { BASE_URL } from "./constants";
 
 test("homepage loads and hero is visible", async ({ page }) => {
-  test.setTimeout(60_000);
   await runSteps({
     page,
     userFlow: "Visit the homepage and verify the hero section loads",
     steps: [
-      { description: "Navigate to https://shubhamjha.com" },
+      { description: `Navigate to ${BASE_URL}` },
       { description: "Wait for the page to fully load" },
     ],
     assertions: [
@@ -21,12 +21,11 @@ test("homepage loads and hero is visible", async ({ page }) => {
 });
 
 test("featured content section is visible", async ({ page }) => {
-  test.setTimeout(60_000);
   await runSteps({
     page,
     userFlow: "Check that featured blog posts or projects appear on the homepage",
     steps: [
-      { description: "Navigate to https://shubhamjha.com" },
+      { description: `Navigate to ${BASE_URL}` },
       { description: "Scroll down past the hero section" },
     ],
     assertions: [
@@ -39,12 +38,11 @@ test("featured content section is visible", async ({ page }) => {
 });
 
 test("newsletter CTA section is present", async ({ page }) => {
-  test.setTimeout(60_000);
   await runSteps({
     page,
     userFlow: "Scroll to the bottom of the homepage and verify the CTA section",
     steps: [
-      { description: "Navigate to https://shubhamjha.com" },
+      { description: `Navigate to ${BASE_URL}` },
       { description: "Scroll to the bottom of the page" },
     ],
     assertions: [

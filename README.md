@@ -4,7 +4,7 @@ A Passmark + Playwright test suite for [shubhamjha.com](https://shubhamjha.com),
 
 ## What this does
 
-This project uses [Passmark](https://github.com/bug0inc/passmark) to test every user-facing feature of shubhamjha.com — a Next.js 16 personal portfolio — using plain-English test descriptions instead of CSS selectors. No page objects. No brittle selectors. Just natural language steps and assertions powered by an LLM via OpenRouter.
+This project uses [Passmark](https://github.com/bug0inc/passmark) to test every user-facing feature of shubhamjha.com — a Next.js personal portfolio — using plain-English test descriptions instead of CSS selectors. No page objects. No brittle selectors. Just natural language steps and assertions powered by an LLM via OpenRouter.
 
 ## Why Passmark?
 
@@ -40,10 +40,6 @@ npm run test:report
 | `tests/projects.spec.ts` | Projects page, card content, external links |
 | `tests/about.spec.ts` | Bio content, social links, Calendly widget |
 | `tests/subscribe.spec.ts` | Newsletter form validation and success state |
-
-## Article
-
-[I Used AI to Write Tests for My Own Portfolio — Here's What I Found](#) *(link added after publish)*
 
 ## Requirements
 

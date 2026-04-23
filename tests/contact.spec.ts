@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { runSteps } from "passmark";
+import { BASE_URL } from "./constants";
 
 test("contact form is visible", async ({ page }) => {
-  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Visit the contact page and verify the form is present",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/contact" },
+      { description: `Navigate to ${BASE_URL}/contact` },
       { description: "Wait for the page to fully load" },
     ],
     assertions: [
@@ -21,12 +21,11 @@ test("contact form is visible", async ({ page }) => {
 });
 
 test("submitting an empty contact form shows validation errors", async ({ page }) => {
-  test.setTimeout(120_000);
   await runSteps({
     page,
     userFlow: "Submit the contact form without filling in any fields",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/contact" },
+      { description: `Navigate to ${BASE_URL}/contact` },
       { description: "Click the submit button without entering any data" },
     ],
     assertions: [
@@ -38,13 +37,14 @@ test("submitting an empty contact form shows validation errors", async ({ page }
   });
 });
 
+// Skipped in CI to avoid sending real messages to the production inbox on every run.
 test("filling and submitting the contact form shows a success state", async ({ page }) => {
-  test.setTimeout(120_000);
+  test.skip(!!process.env.CI, "skipped in CI to avoid real submissions to the production contact endpoint");
   await runSteps({
     page,
     userFlow: "Fill in all required contact form fields and submit",
     steps: [
-      { description: "Navigate to https://shubhamjha.com/contact" },
+      { description: `Navigate to ${BASE_URL}/contact` },
       { description: "Type 'Test User' in the name field" },
       { description: "Type 'test@example.com' in the email field" },
       { description: "Type 'This is a test message from Playwright.' in the message field" },
