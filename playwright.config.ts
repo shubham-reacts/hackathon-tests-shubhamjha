@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import path from "path";
+import { defineConfig } from "@playwright/test";
 import { configure } from "passmark";
+import { BASE_URL } from "./tests/constants";
 
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
@@ -10,9 +12,7 @@ configure({
   },
 });
 
-const BASE_URL = process.env.BASE_URL ?? "https://shubhamjha.com";
-
-export default {
+export default defineConfig({
   testDir: "./tests",
   timeout: 120_000,
   forbidOnly: !!process.env.CI,
@@ -27,4 +27,4 @@ export default {
   projects: [
     { name: "chromium", use: { browserName: "chromium" } },
   ],
-};
+});
