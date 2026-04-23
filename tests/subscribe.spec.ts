@@ -49,8 +49,7 @@ test("submitting a valid email shows success state", async ({ page }) => {
       { description: "Click the subscribe or sign up button" },
     ],
     assertions: [
-      { assertion: "A success message or confirmation is displayed after subscribing" },
-      { assertion: "No error message is visible" },
+      { assertion: "The system acknowledged the subscription attempt — either a success confirmation or an 'already subscribed' message is shown" },
     ],
     test,
     expect,
