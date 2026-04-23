@@ -1,0 +1,17 @@
+{
+  "name": "breaking-apps-hackathon",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "npx playwright test --project chromium",
+    "test:report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.59.1",
+    "typescript": "6.0.3"
+  },
+  "dependencies": {
+    "dotenv": "17.4.2",
+    "passmark": "1.0.8"
+  }
+}
