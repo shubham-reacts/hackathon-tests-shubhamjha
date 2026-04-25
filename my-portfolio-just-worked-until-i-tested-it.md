@@ -2,41 +2,16 @@
 title: "Passmark Found Bugs in My Own Portfolio Before I Did (2026)"
 description: "Passmark found 3 bugs in my live Next.js portfolio before I did. Here's the Calendly iframe fix and the CI pattern that stops form tests spamming your inbox."
 author: Shubham Jha
-authorImage: https://shubhamjha.com/images/shubham-jha.jpg
-coverImage: https://shubhamjha.com/images/blog/playwright-ai-testing-portfolio.png
 date: "2026-04-24"
 tags: ["Playwright", "Passmark", "Testing", "Next.js", "CI/CD"]
 slug: playwright-ai-testing-nextjs-portfolio
 readingTime: "8 min read"
 featured: false
-canonicalUrl: "https://shubhamjha.com/blog/playwright-ai-testing-nextjs-portfolio"
-faq:
-  - question: "What is Passmark?"
-    answer: "Passmark is an open-source AI testing library that wraps Playwright. Instead of CSS selectors, you describe what to test and what to assert in plain English. The LLM resolves the actual selectors at runtime, so tests survive UI refactors that would break a traditional selector-based suite."
-  - question: "Why skip form tests in CI instead of mocking the endpoint?"
-    answer: "Mocking the endpoint gives you a green test even when the real endpoint is broken. The test.skip(!!process.env.CI) pattern keeps a real integration test that you run locally before every deploy, without automating submissions that hit production inboxes or newsletter lists on every push."
-  - question: "How does Passmark test a Calendly iframe?"
-    answer: "Passmark resolves assertions using an LLM, not DOM selectors. You describe what a user should see — 'calendar grid visible, not just a loading spinner' — and the AI evaluates it semantically, without needing to switch frame context or know Calendly's internal class names."
-  - question: "What timeout should I use for third-party embed tests?"
-    answer: "120 seconds is a reliable upper bound for Calendly. The default 30-second Playwright timeout is too tight for a live scheduling widget fetching real availability data over the network. A test that passes locally at 28s and fails in CI at 31s is not a trustworthy test."
-  - question: "How do I set up Passmark with OpenRouter?"
-    answer: "Install passmark via npm, add your OpenRouter API key to .env as OPENROUTER_API_KEY, then call configure({ ai: { gateway: 'openrouter' } }) at the top of your playwright.config.ts before defineConfig. Passmark routes all LLM calls through OpenRouter, so you can use any model the gateway supports."
 ---
 
 I shipped a broken nav label to production. I don't know how long it was wrong. I never tested it.
 
-That's the honest version of this post. I built my portfolio at [shubhamjha.com](https://shubhamjha.com), clicked around, deployed it, and called it done. Then I found [Passmark](https://github.com/bug0inc/passmark) — an open-source AI testing library that lets you write [Playwright](https://playwright.dev) tests in plain English — and pointed it at my own site. Twenty tests. Seven pages. The first run failed three times before I'd gotten to the hard parts. The full suite is on [GitHub](https://github.com/shubhamships/breaking-apps-hackathon).
-
----
-
-## Table of Contents
-
-1. [The assumption trap](#1-the-assumption-trap)
-2. [Setting up Passmark with Playwright](#2-setting-up-passmark-with-playwright)
-3. [The suite: 7 files, 20 tests, zero CSS selectors](#3-the-suite-7-files-20-tests-zero-css-selectors)
-4. [What broke on the first run](#4-what-broke-on-the-first-run)
-5. [Testing a Calendly iframe with Playwright](#5-testing-a-calendly-iframe-with-playwright)
-6. [Keeping Playwright form tests safe in CI](#6-keeping-playwright-form-tests-safe-in-ci)
+That's the honest version of this post. I built my portfolio at [shubhamjha.com](https://shubhamjha.com), clicked around, deployed it, and called it done. Then I found [Passmark](https://github.com/bug0inc/passmark) — an open-source AI testing library that lets you write [Playwright](https://playwright.dev) tests in plain English — and pointed it at my own site. Twenty tests. Seven pages. The first run failed three times before I'd gotten to the hard parts. The full suite is on [GitHub](https://github.com/shubham-reacts/hackathon-tests-shubhamjha).
 
 ---
 
@@ -173,7 +148,7 @@ test("mobile navigation opens and closes", async ({ page }) => {
 
 You handle the setup. Passmark handles the interpretation. That split works across every test in the suite, including the Calendly iframe test in section 5 which would be nearly impossible with CSS selectors alone.
 
-If you're thinking about how a Next.js portfolio like this should be architected for performance while running heavier client-side features, the [scalable Next.js architecture guide](/blog/scalable-web-apps-nextjs) covers that in depth.
+If you're thinking about how a Next.js portfolio like this should be architected for performance while running heavier client-side features, the [scalable Next.js architecture guide](https://shubhamjha.com/blog/scalable-web-apps-nextjs) covers that in depth.
 
 ---
 
